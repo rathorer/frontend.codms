@@ -2,18 +2,21 @@ import { useState, useEffect } from "react";
 import {  } from "@mui/material";
 import { DataGrid } from '@mui/x-data-grid';
 
+const scopeViewInlineLink = "https://www.catalog.update.microsoft.com/ScopedViewInline.aspx?updateid=b5e62522-b5fc-41da-b0c0-edeb835dacbc";
 const columns = [
-    { field: 'keyId', headerName: 'ID', width: 90 },
-    { field: 'title', headerName: 'Title', minWidth: 375, flex: 1,
-    // renderCell: (params) => 
-    //   <a href={params.row.link} target="_blank">{params.row.title}</a> 
+    { field: 'keyId', headerName: 'ID', width: 70, resizable: false,
+      renderCell: (params) => 
+         <a href={scopeViewInlineLink+params.row.keyId} target="_blank">{params.row.keyId}</a> 
+    },
+    { field: 'title', headerName: 'Title', minWidth: 375, flex: 1, resizable: false
+    
     },
     { field: 'description', headerName: 'Description', minWidth: 180, flex: 1 },
-    { field: 'publisherId', headerName: 'Publisher', minWidth: 70, flex: 1 },
-    { field: 'productId', headerName: 'Product Id', minWidth: 70, flex: 1 },
-    { field: 'contentType', headerName: 'Type', minWidth: 70, flex: 1 },
-    { field: 'createdDate', headerName: 'Created On', minWidth: 70, flex: 1 },
-    { field: 'revisionNumber', headerName: 'Revision', minWidth: 70, flex: 1 }
+    { field: 'publisherId', headerName: 'Publisher', minWidth: 90, flex: 1 },
+    // { field: 'productId', headerName: 'Product Id', minWidth: 60, flex: 1 },
+    { field: 'contentType', headerName: 'Type', minWidth: 50, flex: 1 },
+    { field: 'createdDate', headerName: 'Created On', minWidth: 50, flex: 1 },
+    { field: 'revisionNumber', headerName: 'Revision', width: 40, }
     
     // { field: 'products', headerName: 'Products', minWidth: 180, flex: 1 },
     // { field: 'classification', headerName: 'Classification', minWidth: 130, flex: 1 },
@@ -74,14 +77,8 @@ function ResultTable(props) {
     const rows = props.rows;
     console.log(props.query);
     console.log(rows);
-
-    useEffect(() =>{
-      console.log(props);
-  
-    })([props]);
-
     return (
-        <><div style={{ height: 600, width: '75%' }}>
+        <><div style={{ height: 650, width: '85%' }}>
             <DataGrid
                 rows={rows}
                 columns={columns}

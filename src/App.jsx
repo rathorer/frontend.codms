@@ -11,7 +11,7 @@ const [typing, setTyping] = useState(false);
 const [messages, setMessages] = useState([
   {
     message: "Hello! DMS Copilot here.",
-    sender: "DMS-Copilot",
+    sender: "DMS-Copilot"
   },
 ]);
 const [currentUserMessage, setCurrentUserMessage] = useState();
@@ -65,26 +65,13 @@ async function processMessageToDMSApi(chatMessages, apiKey) {
   };
 
   try {
-    // const response = await fetch("https://api.openai.com/v1/chat/completions", {
-    //   method: "GET",
-    //   headers: {
-    //     "Authorization": "Bearer " + apiKey,
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(apiRequestBody),
-    // });
-
-    // const data = await response.json();
     const currentMessage = chatMessages[chatMessages.length-1];
     const data = await APIs.queryBasedSearch(currentMessage);
-    console.log(data);
 
     if(data && Array.isArray(data)){
       if(data.length > 0){
-        //const resultData = {rows:data};
-        //console.log(data);
         setCurrentMessageResp(data);
-        return (<ResultTable rows={currentMessageResp} qyery={defaultQuery}> </ResultTable>);
+        return (<ResultTable rows={data} qyery={currentUserMessage}> </ResultTable>);
       } else{
         return "No data found for your query. Please try to change your filter criteria.";
       }
@@ -117,11 +104,12 @@ async function processMessageToDMSApi(chatMessages, apiKey) {
           >
           {console.log(messages)}
           {messages.map((msg,i)=>{
-            return (typeof msg.message === "string" ? 
+            return (typeof msg.message === "string"? 
               <Message style={{height:"60px" , fontSize:"20px", overflow:"auto"}} key={i} model={msg}/>
               :
-              <ResultTable>
-              </ResultTable>
+              msg.message
+              // <ResultTable key={i} query={currentUserMessage} rows={currentMessageResp}>
+              // </ResultTable>
             )
           })}
           </MessageList>   
