@@ -4,19 +4,19 @@ import { DataGrid } from '@mui/x-data-grid';
 
 const scopeViewInlineLink = "https://www.catalog.update.microsoft.com/ScopedViewInline.aspx?updateid=b5e62522-b5fc-41da-b0c0-edeb835dacbc";
 const columns = [
-    { field: 'keyId', headerName: 'ID', width: 70, resizable: false,
+    { field: 'keyId', headerName: 'ID', width: 70, resizable: false, flex: 0.5,
       renderCell: (params) => 
          <a href={scopeViewInlineLink+params.row.keyId} target="_blank">{params.row.keyId}</a> 
     },
-    { field: 'title', headerName: 'Title', minWidth: 375, flex: 1, resizable: false
+    { field: 'title', headerName: 'Title', minWidth: 375, flex: 2.2, resizable: false
     
     },
-    { field: 'description', headerName: 'Description', minWidth: 180, flex: 1 },
-    { field: 'publisherId', headerName: 'Publisher', minWidth: 90, flex: 1 },
+    { field: 'description', headerName: 'Description', minWidth: 150, flex: 1.5 },
+    { field: 'publisherId', headerName: 'Publisher', minWidth: 150, flex: 1 },
     // { field: 'productId', headerName: 'Product Id', minWidth: 60, flex: 1 },
-    { field: 'contentType', headerName: 'Type', minWidth: 50, flex: 1 },
-    { field: 'createdDate', headerName: 'Created On', minWidth: 50, flex: 1 },
-    { field: 'revisionNumber', headerName: 'Revision', width: 40, }
+    { field: 'contentType', headerName: 'Type', minWidth: 50, flex: 0.7 },
+    { field: 'createdDate', headerName: 'Created On', minWidth: 50, flex: 0.8 },
+    { field: 'revisionNumber', headerName: 'Revision', minWidth: 40, flex: 0.5 }
     
     // { field: 'products', headerName: 'Products', minWidth: 180, flex: 1 },
     // { field: 'classification', headerName: 'Classification', minWidth: 130, flex: 1 },
