@@ -4,19 +4,23 @@ import { DataGrid } from '@mui/x-data-grid';
 
 const scopeViewInlineLink = "https://www.catalog.update.microsoft.com/ScopedViewInline.aspx?updateid=b5e62522-b5fc-41da-b0c0-edeb835dacbc";
 const columns = [
-    { field: 'keyId', headerName: 'ID', width: 70, resizable: false, flex: 0.5,
+    // { field: 'keyId', headerName: 'ID', width: 70, resizable: false, flex: 0.5,
+    //   renderCell: (params) => 
+    //      <a href={scopeViewInlineLink+params.row.keyId} target="_blank">{params.row.keyId}</a> 
+    // },
+    { field: 'title', headerName: 'Title', minWidth: 320, flex: 2, resizable: false,
       renderCell: (params) => 
-         <a href={scopeViewInlineLink+params.row.keyId} target="_blank">{params.row.keyId}</a> 
-    },
-    { field: 'title', headerName: 'Title', minWidth: 375, flex: 2.2, resizable: false
-    
+          <a href={scopeViewInlineLink+params.row.keyId} target="_blank">{params.row.title}</a> 
     },
     { field: 'description', headerName: 'Description', minWidth: 150, flex: 1.5 },
     { field: 'publisherId', headerName: 'Publisher', minWidth: 150, flex: 1 },
     // { field: 'productId', headerName: 'Product Id', minWidth: 60, flex: 1 },
-    { field: 'contentType', headerName: 'Type', minWidth: 50, flex: 0.7 },
-    { field: 'createdDate', headerName: 'Created On', minWidth: 50, flex: 0.8 },
-    { field: 'revisionNumber', headerName: 'Revision', minWidth: 40, flex: 0.5 }
+    { field: 'contentType', headerName: 'Type', minWidth: 50, flex: 0.6 },
+    { field: 'createdDate', headerName: 'Created On', minWidth: 50, flex: 0.6,
+    renderCell: (params) => 
+      (new Date(params.row.createdDate)).toLocaleDateString()
+    },
+    { field: 'revisionNumber', headerName: 'Revision', minWidth: 40, flex: 0.4 }
     
     // { field: 'products', headerName: 'Products', minWidth: 180, flex: 1 },
     // { field: 'classification', headerName: 'Classification', minWidth: 130, flex: 1 },
@@ -78,7 +82,7 @@ function ResultTable(props) {
     console.log(props.query);
     console.log(rows);
     return (
-        <><div style={{ height: 650, width: '85%' }}>
+        <><div style={{ height: 650, width: '90%' }}>
             <DataGrid
                 rows={rows}
                 columns={columns}

@@ -87,7 +87,8 @@ async function processMessageToDMSApi(chatMessages, apiKey) {
     // }
   } catch (error) {
     console.error("Error in API request:", error);
-    throw error;
+    return "Apologies for the unexpected behaviour, can you please retry.";
+    // throw error;
   }
 }
 
