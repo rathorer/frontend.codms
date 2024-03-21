@@ -10,7 +10,7 @@ const defaultQuery = "Show me all the non expired submissions which were created
 const [typing, setTyping] = useState(false);
 const [messages, setMessages] = useState([
   {
-    message: "Hello! DMS Copilot here.",
+    message: "Hello! I am Data Copilot. Please provide your keywords or a short phrase related to the data you’re looking for.",
     sender: "DMS-Copilot"
   },
 ]);
@@ -114,7 +114,7 @@ async function processMessageToDMSApi(chatMessages, apiKey) {
             )
           })}
           </MessageList>   
-          <MessageInput  style={{height:"70px",fontSize:"25px"}} placeholder="Type your query here..." onSend={handleSend}/>         
+          <MessageInput  style={{height:"70px",fontSize:"17px"}} placeholder="Type your query here..." onSend={handleSend}/>         
           </ChatContainer>
         </MainContainer>
        </div>       
