@@ -10,8 +10,8 @@ const defaultQuery = "Show me all the non expired submissions which were created
 const [typing, setTyping] = useState(false);
 const [messages, setMessages] = useState([
   {
-    message: "Hello! I am Data Copilot. Please provide your keywords or a short phrase related to the data you’re looking for.",
-    sender: "DMS-Copilot"
+    message: "Hello! I am your Data Copilot. Go ahead and provide your keywords or a short phrase related to the data you’re looking for.",
+    sender: "Data Copilot"
   },
 ]);
 const [currentUserMessage, setCurrentUserMessage] = useState();
@@ -35,7 +35,7 @@ const handleSend = async (message) => {
         ...newMessages,
         {
           message: response,
-          sender: "DMS-Copilot",
+          sender: "Data Copilot",
         },
       ]);
     }
@@ -54,7 +54,7 @@ async function processMessageToDMSApi(chatMessages, apiKey) {
 
   const apiMessages = chatMessages.map((messageObject) => {
     return {
-      role: messageObject.sender === "DMS-Copilot" ? "assistant" : "user",
+      role: messageObject.sender === "Data Copilot" ? "assistant" : "user",
       content: messageObject.message,
     };
   });
@@ -101,7 +101,7 @@ async function processMessageToDMSApi(chatMessages, apiKey) {
           <ChatContainer>
           <MessageList 
 
-          typingIndicator={typing? <TypingIndicator content="DMS-Copilot is searching"/>:null }
+          typingIndicator={typing? <TypingIndicator content="Data Copilot is searching"/>:null }
           >
           {console.log(messages)}
           {messages.map((msg,i)=>{
