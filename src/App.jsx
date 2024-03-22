@@ -10,8 +10,8 @@ const defaultQuery = "Show me all the non expired submissions which were created
 const [typing, setTyping] = useState(false);
 const [messages, setMessages] = useState([
   {
-    message: "Hello! DMS Copilot here.",
-    sender: "DMS-Copilot"
+    message: "Hello! I am your Data Copilot. Go ahead and provide your keywords or a short phrase related to the data you’re looking for.",
+    sender: "Data Copilot"
   },
 ]);
 const [currentUserMessage, setCurrentUserMessage] = useState();
@@ -35,7 +35,7 @@ const handleSend = async (message) => {
         ...newMessages,
         {
           message: response,
-          sender: "DMS-Copilot",
+          sender: "Data Copilot",
         },
       ]);
     }
@@ -54,7 +54,7 @@ async function processMessageToDMSApi(chatMessages, apiKey) {
 
   const apiMessages = chatMessages.map((messageObject) => {
     return {
-      role: messageObject.sender === "DMS-Copilot" ? "assistant" : "user",
+      role: messageObject.sender === "Data Copilot" ? "assistant" : "user",
       content: messageObject.message,
     };
   });
@@ -87,7 +87,8 @@ async function processMessageToDMSApi(chatMessages, apiKey) {
     // }
   } catch (error) {
     console.error("Error in API request:", error);
-    throw error;
+    return "Apologies for the unexpected behaviour, can you please retry.";
+    // throw error;
   }
 }
 
@@ -100,7 +101,7 @@ async function processMessageToDMSApi(chatMessages, apiKey) {
           <ChatContainer>
           <MessageList 
 
-          typingIndicator={typing? <TypingIndicator content="DMS-Copilot is searching"/>:null }
+          typingIndicator={typing? <TypingIndicator content="Data Copilot is searching"/>:null }
           >
           {console.log(messages)}
           {messages.map((msg,i)=>{
@@ -113,7 +114,7 @@ async function processMessageToDMSApi(chatMessages, apiKey) {
             )
           })}
           </MessageList>   
-          <MessageInput  style={{height:"70px",fontSize:"25px"}} placeholder="Type your query here..." onSend={handleSend}/>         
+          <MessageInput  style={{height:"70px",fontSize:"17px"}} placeholder="Type your query here..." onSend={handleSend}/>         
           </ChatContainer>
         </MainContainer>
        </div>       
